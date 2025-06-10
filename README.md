@@ -10,7 +10,7 @@ This repository contains a Python script `dirty_code.py` with various inefficien
 
 ## Requirements
 
-- Python 3.x
+- Python 
 
 ## Usage
 
@@ -41,18 +41,6 @@ This project is licensed under the GNU General Public License v3.0. See the [LIC
 ## Note
 
 The code in `dirty_code.py` is intentionally inefficient to demonstrate poor coding practices. It is not recommended to use this code in production without optimization.
-
-## Optimization Considerations
-
-Below are some points to consider for code optimization:
-
-- Avoid blocking operations such as `time.sleep()` in loops.
-- Use efficient string concatenation techniques (e.g., using `join()`).
-- Minimize I/O operations in loops.
-- Manage memory usage and prevent large unbounded lists.
-- Avoid busy waiting that consumes CPU cycles.
-- Only import necessary modules.
-- Avoid redundant computations in loops.
 
 ## Contribution
 
