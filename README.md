@@ -1,10 +1,3 @@
-# amit_code
-
-# No libraries needed run directly
-
-Here is a README file for the GitHub repository, based on the details you provided:
-
-markdown
 # Amit's Dirty Code Repository
 
 This repository contains a Python script `dirty_code.py` with various inefficient coding practices and their corresponding test cases in `test_dirty.py`. The intent of this repository is to illustrate common coding violations and inefficiencies that can be found in Python code.
