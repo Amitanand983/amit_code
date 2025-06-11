@@ -2,13 +2,24 @@ import unittest
 import os
 from io import StringIO
 import sys
-from dirty_optimised import (
-    process_data,
-    build_big_string,
-    write_temp_files,
-    generate_huge_list,
-    calculate_stats
-)
+
+# ✅ Dynamic import: Try optimised_code.py first, else fall back to dirty_code.py
+try:
+    from optimised_code import (
+        process_data,
+        build_big_string,
+        write_temp_files,
+        generate_huge_list,
+        calculate_stats
+    )
+except ImportError:
+    from dirty_code import (
+        process_data,
+        build_big_string,
+        write_temp_files,
+        generate_huge_list,
+        calculate_stats
+    )
 
 class TestDirtyCode(unittest.TestCase):
 
@@ -46,8 +57,6 @@ class TestDirtyCode(unittest.TestCase):
         calculate_stats()
         sys.stdout = sys.__stdout__
         output = captured_output.getvalue().strip().splitlines()
-
-        # Check that each line is a number
         self.assertTrue(all(line.strip().isdigit() for line in output))
 
 if __name__ == "__main__":
