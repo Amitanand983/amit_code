@@ -3,7 +3,7 @@ import unittest
 from io import StringIO
 import sys
 
-# 🧠 Safer import logic
+# ✅ Dynamic fallback import
 try:
     from optimised_code import (
         process_data,
@@ -21,7 +21,7 @@ except ImportError:
         generate_huge_list,
         calculate_stats
     )
-    print("⚠️ Using dirty_code.py (fallback)")
+    print("⚠️ Falling back to dirty_code.py")
 
 class TestDirtyCode(unittest.TestCase):
     def test_process_data(self):
