@@ -1,9 +1,9 @@
-import unittest
 import os
+import unittest
 from io import StringIO
 import sys
 
-# ✅ Dynamic import: Try optimised_code.py first, else fall back to dirty_code.py
+# 🧠 Safer import logic
 try:
     from optimised_code import (
         process_data,
@@ -12,6 +12,7 @@ try:
         generate_huge_list,
         calculate_stats
     )
+    print("✅ Using optimised_code.py")
 except ImportError:
     from dirty_code import (
         process_data,
@@ -20,9 +21,9 @@ except ImportError:
         generate_huge_list,
         calculate_stats
     )
+    print("⚠️ Using dirty_code.py (fallback)")
 
 class TestDirtyCode(unittest.TestCase):
-
     def test_process_data(self):
         result = process_data()
         self.assertEqual(len(result), 100)
