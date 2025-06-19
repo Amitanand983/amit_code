@@ -3,16 +3,18 @@ import unittest
 from io import StringIO
 import sys
 
-# ✅ Dynamic import fallback
+# ✅ Conditional Import (optimized or dirty)
 try:
-    from optimised_code import (
-        process_data,
-        build_big_string,
-        write_temp_files,
-        generate_huge_list,
-        calculate_stats
-    )
-    print("✅ Using optimised_code.py")
+    if os.path.exists("optimised_code.py"):
+        from optimised_code import (
+            process_data,
+            build_big_string,
+            write_temp_files,
+            generate_huge_list,
+            calculate_stats
+        )
+    else:
+        raise ImportError("optimised_code.py not found")
 except ImportError:
     from dirty_code import (
         process_data,
@@ -21,9 +23,10 @@ except ImportError:
         generate_huge_list,
         calculate_stats
     )
-    print("⚠️ Falling back to dirty_code.py")
 
-class TestDirtyCode(unittest.TestCase):
+
+class TestCode(unittest.TestCase):
+
     def test_process_data(self):
         result = process_data()
         self.assertEqual(len(result), 100)
@@ -43,7 +46,7 @@ class TestDirtyCode(unittest.TestCase):
             self.assertTrue(os.path.exists(filename))
             with open(filename, "r") as f:
                 self.assertEqual(f.read(), "test")
-            os.remove(filename)  # Clean up
+            os.remove(filename)  # cleanup
 
     def test_generate_huge_list(self):
         result = generate_huge_list()
@@ -59,6 +62,7 @@ class TestDirtyCode(unittest.TestCase):
         sys.stdout = sys.__stdout__
         output = captured_output.getvalue().strip().splitlines()
         self.assertTrue(all(line.strip().isdigit() for line in output))
+
 
 if __name__ == "__main__":
     unittest.main()
